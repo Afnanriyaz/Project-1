@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation to Hang Out</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 0; /* Adjust vertical padding as needed */
+            width: 150px; /* Fixed width for all buttons */
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .image-container {
+            margin-top: 70px; /* Adjust margin as needed */
+            max-width: 80%; /* Adjust max-width as needed */
+            overflow: hidden;
+            margin: 0 auto; /* Center the container horizontally */
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image horizontally */
+        }
+        footer {
+            margin-top: 50px; /* Adjust margin as needed */
+            color: #000; /* Change text color */
+            padding: 20px 0;
+            font-family: Arial, sans-serif; /* Change font family */
+        }
+        .popup-container {
+            display: none; /* Hide the popup by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 999; /* Ensure the popup appears above other content */
+        }
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey Raheel 👀</h1>
+    <p>Would you like to come out and sit with me in a hotel tonight?</p>
+    <div class="container">
+        <button onclick="sendResponse('Yes')">Yes, I'd love to!</button>
+        <button onclick="showPopup()">Sorry, I can't make it.</button>
+        <p id="response"></p>
+    </div>
+
+    <div class="image-container">
+        <img src="https://lh3.googleusercontent.com/pw/ABLVV85chs-Dyx4pugwuY7V9yz-OLQvJH523JNHkyzUxlH6EItjZwYf87ApWnVz7V3PwWrY1sPQ-QQNZfje6EFZTSjHyQuZq09Yhr_yxjldUuBdUgrsU4fbNLc5V7QLCCAsexKxynyQH0gpAmlrEpVPWN0SVpQ=w1081-h811-s-no-gm?authuser=0" alt="Cute Image">
+    </div>
+
+    <footer>
+        © our friendship
+    </footer>
+
+    <!-- Popup container -->
+    <div class="popup-container" id="popup">
+        <div class="popup-content">
+            <p>I am asking again, do you wanna come?</p>
+            <button onclick="sendResponse('Yes')">Yes</button>
+            <button onclick="showSecondPopup()">No</button>
+        </div>
+    </div>
+
+    <!-- Second popup container -->
+    <div class="popup-container" id="secondPopup">
+        <div class="popup-content">
+            <p>I am asking you one last time, do you wanna come?</p>
+            <button onclick="sendResponse('Okay fine')">Okay fine</button>
+            <button onclick="sendFinalResponse()">No</button>
+        </div>
+    </div>
+
+    <!-- Script to handle popups and responses -->
+    <script>
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function hidePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function showSecondPopup() {
+            hidePopup(); // Hide the first popup
+            document.getElementById("secondPopup").style.display = "block";
+        }
+
+        function sendResponse(response) {
+            document.getElementById("response").innerText = "You chose: " + response;
+            if(response === 'Yes') {
+                document.getElementById("response").innerText = "HOORAY!! Can't wait to meet you!";
+                hidePopup(); // Hide the popup after a positive response is sent
+            }
+        }
+
+        function sendFinalResponse() {
+            document.getElementById("response").innerText = "Enjoy your life fucking! 🤬";
+            document.querySelector(".image-container").style.display = "none"; // Hide the image
+            hidePopup(); // Hide the popup
+            document.getElementById("secondPopup").style.display = "none"; // Hide the second popup
+        }
+    </script>
+</body>
+</html>
